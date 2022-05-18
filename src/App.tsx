@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { data, IItem } from './data';
 import './styles.css';
+import { ThemeProvider } from './Context';
 
 type Theme = 'light' | 'dark';
 
@@ -13,10 +14,12 @@ export function App() {
 
     const className = `app app_${currentTheme}`;
     return (
-        <div className={className}>
-            <button onClick={changeTheme}>Toggle theme</button>
-            <List theme={currentTheme} data={data} />
-        </div>
+        <ThemeProvider theme={currentTheme}>
+            <div className={className}>
+                <button onClick={changeTheme}>Toggle theme</button>
+                <List theme={currentTheme} data={data} />
+            </div>
+        </ThemeProvider>
     );
 }
 
